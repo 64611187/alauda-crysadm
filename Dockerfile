@@ -1,3 +1,6 @@
+# 这是迅雷云监工的docker程序
+# 云监工原作者powergx,所有贡献者以及CCTV
+
 FROM tutum/ubuntu:trusty
 
 
@@ -14,10 +17,10 @@ RUN mkdir /app
 WORKDIR /app
 
 #下载云监工源代码
-RUN git clone https://github.com/64611187/crysadm-master.git
+RUN git clone https://github.com/64611187/crysadm.git
 
 #redis数据库保存目录
-VOLUME ["/var/lib/redis"]
+VOLUME ["/app"]
 
 #安装python，redis
 RUN apt-get install -y python3.4 python3.4-dev redis-server

@@ -17,10 +17,10 @@ RUN mkdir /app
 WORKDIR /app
 
 #下载云监工源代码
-RUN git clone https://github.com/ccav14/crysadm.git
+RUN git clone https://github.com/64611187/crysadm-master.git
 
 #redis数据库保存目录
-VOLUME ["/var/lib/redis"]
+VOLUME ["/app"]
 
 #安装python，redis
 RUN apt-get install -y python3.4 python3.4-dev redis-server

@@ -32,7 +32,7 @@ COPY default /etc/nginx/sites-available/
 RUN apt-get clean 
 
 #脚本加运行权限
-RUN chmod 777 /app/crysadm/run.sh /app/crysadm/down.sh /app/crysadm/setup.sh  /app/crysadm/cron.sh
+RUN chmod +x /app/crysadm/run.sh /app/crysadm/down.sh /app/crysadm/setup.sh  /app/crysadm/cron.sh
 
 #设置容器端口
 #云监工端口

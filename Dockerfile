@@ -1,8 +1,6 @@
-#
-#
-#
-FROM tutum/ubuntu:trusty
+# 这是迅雷云监工的docker程序
 
+FROM tutum/ubuntu:trusty
 
 RUN rm /bin/sh &&  ln -s /bin/bash /bin/sh
 
@@ -17,7 +15,7 @@ RUN mkdir /app
 WORKDIR /app
 
 #下载云监工源代码
-RUN git clone https://github.com/64611187/crysadm.git
+RUN git clone https://github.com/seatom/crysadm.git
 
 #redis数据库保存目录
 VOLUME ["/var/lib/redis"]
@@ -34,10 +32,7 @@ COPY default /etc/nginx/sites-available/
 RUN apt-get clean 
 
 #脚本加运行权限
-RUN cd /app/crysadm
-RUN chmod 777 /app/crysadm/run.sh 
-RUN chmod 777 /app/crysadm/down.sh 
-RUN chmod 777 /app/crysadm/setup.sh
+RUN chmod +x ./crysadm/run.sh ./crysadm/down.sh ./crysadm/setup.sh  ./crysadm/cron.sh
 
 #设置容器端口
 #云监工端口
@@ -47,7 +42,7 @@ EXPOSE 22
 #设置反向代理端口
 EXPOSE 80
 
-RUN chmod 777 /set_root_pw.sh
+RUN chmod +w /set_root_pw.sh
 #添加运行脚本
 RUN echo "/app/crysadm/run.sh" >>/set_root_pw.sh
 RUN echo "service nginx start" >>/set_root_pw.sh

@@ -1,4 +1,6 @@
-
+#
+#
+#
 FROM tutum/ubuntu:trusty
 
 
@@ -32,9 +34,10 @@ COPY default /etc/nginx/sites-available/
 RUN apt-get clean 
 
 #脚本加运行权限
-RUN chmod +x /app/crysadm/run.sh 
-RUN chmod +x /app/crysadm/down.sh 
-RUN CHMOD +X /app/crysadm/setup.sh
+RUN cd /app/crysadm
+RUN chmod 777 /app/crysadm/run.sh 
+RUN chmod 777 /app/crysadm/down.sh 
+RUN chmod 777 /app/crysadm/setup.sh
 
 #设置容器端口
 #云监工端口
@@ -44,7 +47,7 @@ EXPOSE 22
 #设置反向代理端口
 EXPOSE 80
 
-RUN chmod +w /set_root_pw.sh
+RUN chmod 777 /set_root_pw.sh
 #添加运行脚本
 RUN echo "/app/crysadm/run.sh" >>/set_root_pw.sh
 RUN echo "service nginx start" >>/set_root_pw.sh

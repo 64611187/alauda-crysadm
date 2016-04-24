@@ -18,7 +18,7 @@ WORKDIR /app
 RUN git clone https://github.com/64611187/crysadm.git
 
 #redis数据库保存目录
-VOLUME ["/app"]
+VOLUME ["/var/lib/redis"]
 
 #安装python，redis
 RUN apt-get install -y python3.4 python3.4-dev redis-server
@@ -32,7 +32,7 @@ COPY default /etc/nginx/sites-available/
 RUN apt-get clean 
 
 #脚本加运行权限
-RUN chmod +x ./crysadm/run.sh ./crysadm/down.sh ./crysadm/setup.sh  ./crysadm/cron.sh
+RUN chmod 777 ./crysadm/run.sh ./crysadm/down.sh ./crysadm/setup.sh  ./crysadm/cron.sh
 
 #设置容器端口
 #云监工端口
